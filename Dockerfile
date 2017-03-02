@@ -14,7 +14,9 @@ RUN apk --no-cache add --virtual build-dependencies \
     git \
   && mkdir -p /root/gocode \
   && export GOPATH=/root/gocode \
-  && go get github.com/mailhog/MailHog \
+  && mkdir -p /root/gocode/src/github.com/mailhog \
+  && ln -s /root/gocode/src/github.com/sdurrheimer/MailHog /root/gocode/src/github.com/mailhog/MailHog \
+  && go get github.com/sdurrheimer/MailHog \
   && mv /root/gocode/bin/MailHog /usr/local/bin \
   && rm -rf /root/gocode \
   && apk del --purge build-dependencies
